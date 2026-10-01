@@ -1,0 +1,19 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel-app
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8000:8000"
+    networks:
+      - oracle-net
+    environment:
+      - DB_HOST=oracle-db
+      - DB_PORT=1521
+
+networks:
+  oracle-net:
+    external: true
